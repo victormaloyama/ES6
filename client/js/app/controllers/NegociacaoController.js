@@ -13,6 +13,7 @@ class NegociacaoController {
         this._inputData = $('#data');
         this._inputQuantidade = $('#quantidade');
         this._inputValor = $('#valor');
+        this._listaNegociacoes = new ListaNegociacoes();
     }
 
     adiciona(event){
@@ -69,8 +70,11 @@ class NegociacaoController {
             this._inputQuantidade.value,
             this._inputValor.value
         );
+
+        this._listaNegociacoes.adicionaLista(negociacao);
+
         console.log(DataHelper.dataParaTexto(negociacao.data));
-        
+        console.log(this._listaNegociacoes.negociacoes);
     }
 
 }

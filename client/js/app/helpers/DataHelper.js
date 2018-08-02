@@ -13,7 +13,7 @@ class DataHelper {
 
       static textoParaData(texto){
             /* 
-            Se data DIFERENTE(!) de aaaa-mm-dd, exibir erro
+            Se data DIFERENTE(!) de aaaa-mm-dd, exibir erro.
             */
             if(!/\d{4}-\d{2}-\d{2}/.test(texto)){
                   throw new Error('O formato da data deve ser: aaaa-mm-dd!')
