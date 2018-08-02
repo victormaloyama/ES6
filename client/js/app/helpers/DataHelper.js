@@ -3,21 +3,30 @@
 class DataHelper {
       
       static dataParaTexto(data){
-            return data.getDate()
-            +'/'+(data.getMonth() + 1)
-            //+ 1 BECAUSE OF THE MONTH SYSTEM THAT DECREASES THE NUMBER AND () FOR THE HIERARCHY
-            +'/'+data.getFullYear();
-            console.log(diaMesAno);
+            /* 
+            In ES6 there is a property called 'template string'
+            that allows you to write a var into a string without
+            having to concatenate them. Simply using `` and ${}.
+            */
+            return `${data.getDate()}/${data.getMonth() + 1}/${data.getFullYear()}`;
       }
 
       static textoParaData(texto){
+            /* 
+            Se data DIFERENTE(!) de aaaa-mm-dd, exibir erro
+            */
+            if(!/\d{4}-\d{2}-\d{2}/.test(texto)){
+                  throw new Error('O formato da data deve ser: aaaa-mm-dd!')
+            }
+            
             /* 
             Converting texto to a date time form
             These three dots breaks the array to be sent like params for a function
             Example: let "...array1 = [0,1,2].map()"
             It is;                  = map(1,2,3);
             */
-            return new Date (...texto.split('-')             
+
+            return new Date(...texto.split('-')             
                   /*
                   valorArray = ARRAY VALUE
                   posicaoArray = ARRAY POSITION 

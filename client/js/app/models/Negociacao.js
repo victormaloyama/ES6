@@ -1,3 +1,5 @@
+
+/* Getting data from NegociacaoController.js */
 class Negociacao {
     
     /* Firstly, we needed to get the data from the parameters and named they
