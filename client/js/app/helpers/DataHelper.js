@@ -1,8 +1,11 @@
-
 /* Getting data from NegociacaoController.js */
 class DataHelper {
-      
-      static dataParaTexto(data){
+
+      constructor() {
+            throw new Error('Esta classe não pode ser instanciada');
+      }
+
+      static dataParaTexto(data) {
             /* 
             In ES6 there is a property called 'template string'
             that allows you to write a var into a string without
@@ -11,14 +14,14 @@ class DataHelper {
             return `${data.getDate()}/${data.getMonth() + 1}/${data.getFullYear()}`;
       }
 
-      static textoParaData(texto){
+      static textoParaData(texto) {
             /* 
             Se data DIFERENTE(!) de aaaa-mm-dd, exibir erro.
             */
-            if(!/\d{4}-\d{2}-\d{2}/.test(texto)){
+            if (!/\d{4}-\d{2}-\d{2}/.test(texto)) {
                   throw new Error('O formato da data deve ser: aaaa-mm-dd!')
             }
-            
+
             /* 
             Converting texto to a date time form
             These three dots breaks the array to be sent like params for a function
@@ -26,7 +29,7 @@ class DataHelper {
             It is;                  = map(1,2,3);
             */
 
-            return new Date(...texto.split('-')             
+            return new Date(...texto.split('-')
                   /*
                   valorArray = ARRAY VALUE
                   posicaoArray = ARRAY POSITION 

@@ -1,7 +1,6 @@
-
 /* Getting data from NegociacaoController.js */
 class Negociacao {
-    
+
     /* Firstly, we needed to get the data from the parameters and named they
     as properties.
     
@@ -12,19 +11,19 @@ class Negociacao {
         this._valor = valor;
         Object.freeze(this);
     }
-    
-    get volume() {     
+
+    get volume() {
         return this._quantidade * this._valor;
     }
-    
+
     get data() {
         return new Date(this._data.getTime());
     }
-    
+
     get quantidade() {
         return this._quantidade;
     }
-    
+
     get valor() {
         return this._valor;
     }

@@ -17,22 +17,24 @@ class NegociacaoController {
         //Creating a new ListaNegociacoes from ListaNegociacoes.js
     }
 
-    adiciona(event){ //onsubmit that is in HTML form.
+    adiciona(event) { //onsubmit that is in HTML form.
         event.preventDefault();
-        
+
         /* Creating a new negociacao */
         let negociacao = new Negociacao(
-            DataHelper.textoParaData(this._inputQuantidade.value),
-            //Sendind data to DataHelper.js
+            DataHelper.textoParaData(this._inputData.value),
+            //Sendind data to DataHelper.js and returning a converted date time
             this._inputQuantidade.value,
             this._inputValor.value
         );
 
         this._listaNegociacoes.adicionaLista(negociacao);
         this._limpaFormulario();
+
+        console.log(this._listaNegociacoes.negociacoes);
     }
 
-    _limpaFormulario(){
+    _limpaFormulario() {
         /* Clearing inputs from form */
         this._inputData.value = '';
         this._inputQuantidade.value = 1;
@@ -40,5 +42,4 @@ class NegociacaoController {
 
         this._inputData.focus();
     }
-
 }
