@@ -11,7 +11,13 @@ class DataHelper {
             that allows you to write a var into a string without
             having to concatenate them. Simply using `` and ${}.
             */
-            return `${data.getDate()}/${data.getMonth() + 1}/${data.getFullYear()}`;
+            return `${data.getDate()}/${
+                  (function(){
+                        if((data.getMonth() + 1).toString.length < 2 ){
+                              return '0' + (data.getMonth() + 1);
+                        }
+                  })()
+            }/${data.getFullYear()}`;
       }
 
       static textoParaData(texto) {
@@ -19,7 +25,12 @@ class DataHelper {
             Se data DIFERENTE(!) de aaaa-mm-dd, exibir erro.
             */
             if (!/\d{4}-\d{2}-\d{2}/.test(texto)) {
-                  throw new Error('O formato da data deve ser: aaaa-mm-dd!')
+                  /* 
+                  \D é qualquer coisa não dígito.
+                  \D{n} é qualquer coisa não dígito que forme um grupo de n caracteres.
+                  \d é qualquer dígito. 
+                  */
+                  throw new Error('O formato da data deve ser: aaaa-mm-dd!');
             }
 
             /* 

@@ -1,34 +1,48 @@
 class NegociacaoController {
     constructor() {
-        /*
-        Creating a MICROFRAMEWORK, using the dolar symbol. jQuery like
+        /* Creating a MICROFRAMEWORK, using the dolar symbol. jQuery like
         to select the INPUTS BY THEIR ID.
-        Obs: .bind() must be used to connect this property to the document.
-        */
+        Obs: .bind() must be used to connect this property to the document. */
         let $ = document.querySelector.bind(document);
-        /*
-        Once it used these classes it stores their properties 
-        It's similar to a cache memory
-        */
+        /* Once it used these classes it stores their properties 
+        It's similar to a cache memory */
         this._inputData = $('#data');
         this._inputQuantidade = $('#quantidade');
         this._inputValor = $('#valor');
+
+        /* Creating a new ListaNegociacoes' ARRAY from ListaNegociacoes.js */
         this._listaNegociacoes = new ListaNegociacoes();
-        //Creating a new ListaNegociacoes from ListaNegociacoes.js
+    
+        /* Sending to NegociacoesView.js an element, in this case a div called
+        negociacoesViews */
+        this._negociacoesView = new NegociacoesView($('#negociacoesView'));
+       
+        /* Calling _update from NegociacoesView.js */
+        this._negociacoesView._update(this._listaNegociacoes);
     }
 
-    adiciona(event) { //onsubmit that is in HTML form.
-        event.preventDefault();
-
+    /* Receiving processed data on this METHOD through the fields */
+    _criaNegociacao() {
         /* Creating a new negociacao */
-        let negociacao = new Negociacao(
+        return new Negociacao(
             DataHelper.textoParaData(this._inputData.value),
-            //Sendind data to DataHelper.js and returning a converted date time
+            /* Sendind data as YYYY-MM-DD to DataHelper.js 
+            and returning a converted date time */
             this._inputQuantidade.value,
             this._inputValor.value
         );
-
-        this._listaNegociacoes.adicionaLista(negociacao);
+    }
+    
+    adiciona(event) { //onsubmit form triggers this METHOD(function).
+        event.preventDefault()
+        
+        /* Sending THREE PARAMS to adicionaLista METHOD. */
+        this._listaNegociacoes.adicionaLista(this._criaNegociacao());
+        
+        /* Updating _listaNegociacoes at NegociacoesView.js, there it is the MODEL */
+        this._negociacoesView._update(this._listaNegociacoes);
+        
+        /* Calling _limpaFormulario METHOD that is below */
         this._limpaFormulario();
 
         console.log(this._listaNegociacoes.negociacoes);
